@@ -5,7 +5,6 @@ import {
   Image,
   View,
   Text,
-  Pressable,
   StyleSheet,
 } from 'react-native';
 import AppIntroSlider from 'react-native-app-intro-slider';
@@ -14,27 +13,13 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/Ionicons';
 import getImageByName from '../../utils/images.utils';
 import strings from '../../utils/strings.utils';
+import colors from '../../utils/colors.utils';
 
 const IntroScreen = () => {
   var slider = React.useRef(AppIntroSlider);
-  const prevButton = index => {
-    if (index === 1) {
-      slider?.goToSlide(0, true);
-    } else if (index === 2) {
-      slider?.goToSlide(1, true);
-    }
-  };
-  const nextButton = index => {
-    if (index === 0) {
-      slider?.goToSlide(1, true);
-    } else if (index === 1) {
-      slider?.goToSlide(2, true);
-    } else if (index === 2) {
-      // goto Login
-    }
-  };
   const renderItem = ({item}) => {
     return (
       <SafeAreaView style={styles.container}>
@@ -53,52 +38,42 @@ const IntroScreen = () => {
       </SafeAreaView>
     );
   };
-  renderPagination = activeIndex => {
+  const renderPrevButton = () => {
     return (
-      <View style={styles.bottomContent}>
-        <View style={styles.prevButton}>
-          {/* Hilangkan tombol kembali jika index 0 */}
-          <Pressable
-            style={styles.button}
-            onPress={() => prevButton(activeIndex)}>
-            <Image source={getImageByName('arrowLeft')} style={styles.arrow} />
-            <Text style={styles.buttonText}>Kembali</Text>
-          </Pressable>
-        </View>
-        <View style={styles.paginationContainer}>
-          <View style={styles.paginationDots}>
-            {strings.slides.map((_, i) => (
-              <View
-                key={i}
-                style={[
-                  styles.paginationItem,
-                  i === activeIndex
-                    ? {backgroundColor: '#fff'}
-                    : {backgroundColor: '#004D95'},
-                ]}
-              />
-            ))}
-          </View>
-        </View>
-        <View style={styles.nextButton}>
-          <Pressable
-            style={styles.button}
-            onPress={() => nextButton(activeIndex)}>
-            <Text style={styles.buttonText}>Lanjut</Text>
-            <Image source={getImageByName('arrowRight')} style={styles.arrow} />
-          </Pressable>
-        </View>
+      <View style={styles.bottomButton}>
+        <Icon name="arrow-back-outline" color={colors.primary} size={24} />
+        <Text style={styles.buttonText}>Kembali</Text>
+      </View>
+    );
+  };
+  const renderNextButton = () => {
+    return (
+      <View style={styles.bottomButton}>
+        <Text style={styles.buttonText}>Lanjut</Text>
+        <Icon name="arrow-forward-outline" color={colors.primary} size={24} />
+      </View>
+    );
+  };
+  const renderDoneButton = () => {
+    return (
+      <View style={styles.bottomButton}>
+        <Text style={styles.buttonText}>Lanjut</Text>
+        <Icon name="arrow-forward-outline" color={colors.primary} size={24} />
       </View>
     );
   };
   return (
     <AppIntroSlider
       data={strings.slides}
-      renderItem={renderItem}
-      renderPagination={renderPagination}
       ref={ref => {
         slider = ref;
       }}
+      renderItem={renderItem}
+      showPrevButton
+      renderPrevButton={renderPrevButton}
+      renderNextButton={renderNextButton}
+      renderDoneButton={renderDoneButton}
+      // onDone={}
     />
   );
 };
@@ -132,55 +107,20 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     textAlign: 'center',
   },
-  bottomContent: {
-    position: 'absolute',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    bottom: hp('3%'),
-    alignContent: 'center',
-  },
-  paginationContainer: {
-    left: wp('17%'),
-  },
-  paginationDots: {
-    height: hp('1%'),
-    margin: wp('3%'),
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  paginationItem: {
-    width: wp('2%'),
-    height: hp('1.3%'),
-    borderRadius: wp('2%'),
-    marginHorizontal: wp('1.3%'),
-  },
-  prevButton: {
-    left: wp('5%'),
-  },
-  nextButton: {
-    left: wp('30%'),
-  },
-  button: {
+  bottomButton: {
+    backgroundColor: colors.secondary,
+    width: wp('25%'),
     height: hp('5%'),
-    width: wp('23%'),
-    backgroundColor: '#FFE457',
     borderRadius: wp('1%'),
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   },
   buttonText: {
-    color: '#007DF1',
+    color: colors.primary,
     fontWeight: '700',
-    textAlign: 'center',
     fontSize: 12,
-    marginVertical: hp('1%'),
-    marginHorizontal: wp('3%'),
-  },
-  arrow: {
-    marginVertical: hp('1%'),
-    tintColor: '#007DF1',
-    marginHorizontal: wp('1%'),
+    lineHeight: 16,
   },
 });
 
