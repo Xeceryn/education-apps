@@ -5,6 +5,7 @@ import Presentation from '../assets/images/Presentation.png';
 import GradHat from '../assets/images/GradHat.png';
 import Bag from '../assets/images/Bag.png';
 import LoginBg from '../assets/images/loginbg.png';
+import LoginArt from '../assets/images/loginArt.png';
 
 const images = {
   Intro1Bg,
@@ -14,6 +15,7 @@ const images = {
   GradHat,
   Bag,
   LoginBg,
+  LoginArt,
 };
 
 export default function getImageByName(key) {
