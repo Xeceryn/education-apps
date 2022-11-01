@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import IntroScreen from '../screens/introscreen/index.introscreen';
 import LoginScreen from '../screens/login.screen';
+import RegistrasiScreen from '../screens/registrasi.screen';
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
 
@@ -14,7 +15,7 @@ const Navigation = () => {
         screenOptions={{
           headerShown: false,
         }}>
-        <Stack.Screen name="Intro" component={LoginScreen} />
+        <Stack.Screen name="Intro" component={RegistrasiScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
