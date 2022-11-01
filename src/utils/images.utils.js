@@ -4,8 +4,8 @@ import Intro3Bg from '../assets/images/intro3bg.png';
 import Presentation from '../assets/images/Presentation.png';
 import GradHat from '../assets/images/GradHat.png';
 import Bag from '../assets/images/Bag.png';
-import arrowRight from '../assets/images/arrow-right.png';
-import arrowLeft from '../assets/images/arrow-left.png';
+import LoginBg from '../assets/images/loginbg.png';
+import LoginArt from '../assets/images/loginArt.png';
 
 const images = {
   Intro1Bg,
@@ -14,8 +14,8 @@ const images = {
   Presentation,
   GradHat,
   Bag,
-  arrowRight,
-  arrowLeft,
+  LoginBg,
+  LoginArt,
 };
 
 export default function getImageByName(key) {

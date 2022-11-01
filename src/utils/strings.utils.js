@@ -22,6 +22,9 @@ const slides = [
   },
 ];
 
+const wellcome = 'Selamat Datang!';
+
 export default strings = {
   slides,
+  wellcome,
 };
