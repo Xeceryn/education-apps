@@ -8,6 +8,7 @@ import LoginBg from '../assets/images/loginbg.png';
 import LoginArt from '../assets/images/loginArt.png';
 import RegistrasiBg from '../assets/images/registrasibg.png';
 import RegistrasiArt from '../assets/images/registrasiArt.png';
+import OtpArt from '../assets/images/otpArt.png';
 
 const images = {
   Intro1Bg,
@@ -20,6 +21,7 @@ const images = {
   LoginArt,
   RegistrasiBg,
   RegistrasiArt,
+  OtpArt,
 };
 
 export default function getImageByName(key) {
