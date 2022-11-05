@@ -4,7 +4,7 @@ const slides = [
     main: 'Intro1Bg',
     content: 'Presentation',
     title: 'Semua Mata Pelajaran',
-    subtitle: 'Berbagai macam mata pelajaran dari instruktur yang sesuai',
+    subtitle: 'Berbagai macam mata pelajaran dan instruktur yang sesuai',
   },
   {
     key: 'two',

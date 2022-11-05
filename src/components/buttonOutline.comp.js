@@ -5,10 +5,10 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-const ButtonOutline = ({buttonText}) => {
+const ButtonOutline = ({onPress, buttonText}) => {
   return (
     <View style={styles.buttonOutlineContainer}>
-      <Pressable style={styles.buttonOutline}>
+      <Pressable style={styles.buttonOutline} onPress={onPress}>
         <Text style={styles.buttonOutlineText}>{buttonText}</Text>
       </Pressable>
     </View>
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   buttonOutlineText: {
     color: '#FFF',
     fontWeight: '700',
-    fontSize: 12,
+    fontSize: 14,
     lineHeight: 16,
   },
 });

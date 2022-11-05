@@ -6,29 +6,29 @@ import {
 } from 'react-native-responsive-screen';
 import colors from '../utils/colors.utils';
 
-const ButtonType = ({buttonText}) => {
+const ButtonType = ({onPress, buttonText, isSelect}) => {
   return (
-    <Pressable style={styles.buttonType}>
-      <Text style={styles.buttonTypeText}>{buttonText}</Text>
+    <Pressable style={styles.buttonType(isSelect)} onPress={onPress}>
+      <Text style={styles.buttonTypeText(isSelect)}>{buttonText}</Text>
     </Pressable>
   );
 };
 
 const styles = StyleSheet.create({
-  buttonType: {
-    backgroundColor: '#FFF',
+  buttonType: isSelect => ({
+    backgroundColor: isSelect ? colors.primary : colors.white,
     width: wp('40%'),
     height: hp('8%'),
     borderRadius: wp('1%'),
     justifyContent: 'center',
     alignItems: 'center',
     margin: wp('2%'),
-  },
-  buttonTypeText: {
-    color: colors.primary,
+  }),
+  buttonTypeText: isSelect => ({
+    color: isSelect ? colors.white : colors.primary,
     fontWeight: '700',
-    fontSize: 16,
-  },
+    fontSize: 18,
+  }),
 });
 
 export default ButtonType;
