@@ -61,14 +61,13 @@ const LoginScreen = ({navigation}) => {
           validateOnBlur={true}
           validationSchema={loginForm}
           enableReinitialize
-          onSubmit={({noPhone, password}) => {
+          onSubmit={({phone, password}) => {
             const initial = '+62';
             const userData = {
-              phone: initial + noPhone,
+              phone: initial + phone,
               password,
             };
-            console.log(userData);
-            // sign(userData);
+            sign(userData);
           }}>
           {({
             handleChange,

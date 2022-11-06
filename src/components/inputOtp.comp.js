@@ -50,6 +50,7 @@ const InputOtp = ({code, setCode, maximumLength, setIsOtpReady}) => {
         maxLength={maximumLength}
         ref={inputRef}
         onBlur={handleOnBlur}
+        keyboardType={'number-pad'}
       />
     </View>
   );
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     width: wp('90%'),
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white,
     height: hp('10%'),
     borderRadius: wp('1%'),
   },
@@ -70,18 +71,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textInputHidden: {
-    borderColor: '#E6E6E6',
-    backgroundColor: '#E6E6E6',
+    borderColor: colors.grey,
+    backgroundColor: colors.grey,
     borderWidth: 1,
     borderRadius: wp('1%'),
     padding: wp('2%'),
     marginTop: hp('2%'),
     position: 'absolute',
     opacity: 0,
+    width: wp('90%'),
+    height: hp('9%'),
   },
   splitBoxes: {
-    borderColor: '#E6E6E6',
-    backgroundColor: '#E6E6E6',
+    borderColor: colors.grey,
+    backgroundColor: colors.grey,
     borderWidth: 2,
     borderRadius: wp('1%'),
     padding: wp('3%'),

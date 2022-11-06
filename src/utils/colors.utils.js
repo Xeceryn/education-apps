@@ -5,6 +5,7 @@ const alert = '#FF0101';
 const success = '#3CE900';
 const warning = '#FFC700';
 const white = '#FFFFFF';
+const grey = '#E6E6E6';
 
 export default colors = {
   primary,
@@ -14,4 +15,5 @@ export default colors = {
   success,
   warning,
   white,
+  grey,
 };

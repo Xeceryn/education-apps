@@ -7,6 +7,7 @@ import {
 import {Formik} from 'formik';
 import * as yup from 'yup';
 import Background from '../components/background.comp';
+import BackButton from '../components/backButton.comp';
 import Header from '../components/header.comp';
 import ButtonType from '../components/buttonType.comp';
 import InputPhone from '../components/inputPhone.comp';
@@ -24,7 +25,7 @@ const registForm = yup.object().shape({
     .oneOf([yup.ref('password'), null], 'Password tidak sama'),
 });
 
-const RegistrasiScreen = () => {
+const RegistrasiScreen = ({navigation}) => {
   const {regist} = useContext(AuthContext);
   const [rightIconName, setRightIconName] = useState('eye-off');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
@@ -32,15 +33,19 @@ const RegistrasiScreen = () => {
   const [siswaSelect, isSiswaSelect] = useState(false);
   const [mentorSelect, isMentorSelect] = useState(false);
 
-  // disable enable button select siswa
+  const backButton = () => {
+    navigation.goBack();
+  };
   const buttonSiswa = () => {
     setButtonValue('siswa');
     isSiswaSelect(true);
+    isMentorSelect(false);
   };
 
   const buttonMentor = () => {
     setButtonValue('mentor');
     isMentorSelect(true);
+    isSiswaSelect(false);
   };
 
   const rightIconPress = () => {
@@ -55,6 +60,9 @@ const RegistrasiScreen = () => {
   return (
     <Background backgroundName={'RegistrasiBg'}>
       <StatusBar barStyle="light-content" backgroundColor={colors.primary} />
+      <View style={styles.backButtonContainer}>
+        <BackButton onPress={backButton} />
+      </View>
       <View style={styles.ilustrasiContainer}>
         <Image source={getImageByName('RegistrasiArt')} />
       </View>
@@ -90,13 +98,14 @@ const RegistrasiScreen = () => {
           validationSchema={registForm}
           enableReinitialize={true}
           onSubmit={({phone, password, passwordConfirmation}) => {
+            const initial = '+62';
             const userRegist = {
-              phone,
+              phone: initial + phone,
               password,
               passwordConfirmation,
+              buttonValue,
             };
-            console.log(userRegist);
-            // regist(userRegist);
+            regist(userRegist);
           }}>
           {({
             handleChange,
@@ -170,6 +179,10 @@ const RegistrasiScreen = () => {
 };
 
 const styles = StyleSheet.create({
+  backButtonContainer: {
+    top: hp('-24%'),
+    left: wp('-44%'),
+  },
   ilustrasiContainer: {
     position: 'absolute',
     top: hp('10%'),

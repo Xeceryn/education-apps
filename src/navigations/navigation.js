@@ -49,12 +49,14 @@ const Navigation = () => {
           }}>
           {isFirst ? (
             <Stack.Screen name="Intro" component={IntroScreen} />
-          ) : (
+          ) : userData == null ? (
             <>
               <Stack.Screen name="Login" component={LoginScreen} />
               <Stack.Screen name="Registrasi" component={RegistrasiScreen} />
               <Stack.Screen name="OTP" component={OtpScreen} />
             </>
+          ) : (
+            <></>
           )}
         </Stack.Navigator>
       </NavigationContainer>
