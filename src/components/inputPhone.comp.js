@@ -6,7 +6,14 @@ import {
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const InputPhone = ({label, placeholder}) => {
+const InputPhone = ({
+  label,
+  placeholder,
+  placeholderTextColor,
+  onChangeText,
+  onBlur,
+  value,
+}) => {
   return (
     <View style={styles.inputPhoneContainer}>
       <Text style={styles.inputLabel}>{label}</Text>
@@ -20,9 +27,12 @@ const InputPhone = ({label, placeholder}) => {
           <TextInput
             style={styles.textInput}
             placeholder={placeholder}
-            placeholderTextColor={'#FFF'}
+            placeholderTextColor={placeholderTextColor}
             selectionColor={'#FFF'}
             keyboardType={'phone-pad'}
+            onChangeText={onChangeText}
+            onBlur={onBlur}
+            value={value}
           />
         </View>
       </View>

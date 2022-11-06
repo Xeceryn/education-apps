@@ -16,6 +16,10 @@ const Input = ({
   placeholderTextColor,
   textContentType,
   secureTextEntry,
+  onChangeText,
+  onBlur,
+  value,
+  rightIconPress,
 }) => {
   return (
     <View style={styles.inputContainer}>
@@ -29,8 +33,16 @@ const Input = ({
           selectionColor={'#FFF'}
           textContentType={textContentType}
           secureTextEntry={secureTextEntry}
+          onChangeText={onChangeText}
+          onBlur={onBlur}
+          value={value}
         />
-        <Icon name={rightIconName} color={iconColor} size={iconSize} />
+        <Icon
+          name={rightIconName}
+          color={iconColor}
+          size={iconSize}
+          onPress={rightIconPress}
+        />
       </View>
     </View>
   );
@@ -43,7 +55,7 @@ const styles = StyleSheet.create({
   inputLabel: {
     color: '#FFF',
     fontWeight: '400',
-    fontSize: 14,
+    fontSize: 16,
     marginBottom: hp('1%'),
   },
   textInputContainer: {
@@ -60,7 +72,7 @@ const styles = StyleSheet.create({
   textInput: {
     width: wp('55%'),
     color: '#FFF',
-    fontSize: 14,
+    fontSize: 16,
   },
 });
 

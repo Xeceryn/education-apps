@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {
   StatusBar,
   ImageBackground,
@@ -14,11 +14,13 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
-import getImageByName from '../../utils/images.utils';
-import strings from '../../utils/strings.utils';
-import colors from '../../utils/colors.utils';
+import getImageByName from '../utils/images.utils';
+import strings from '../utils/strings.utils';
+import colors from '../utils/colors.utils';
+import {AuthContext} from '../utils/context.utils';
 
 const IntroScreen = () => {
+  const {first} = useContext(AuthContext);
   var slider = React.useRef(AppIntroSlider);
   const renderItem = ({item}) => {
     return (
@@ -73,7 +75,7 @@ const IntroScreen = () => {
       renderPrevButton={renderPrevButton}
       renderNextButton={renderNextButton}
       renderDoneButton={renderDoneButton}
-      // onDone={}
+      onDone={() => first()}
     />
   );
 };
@@ -88,21 +90,24 @@ const styles = StyleSheet.create({
     resizeMode: 'center',
   },
   conContent: {
-    marginHorizontal: wp('25%'),
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: wp('14%'),
   },
   conText: {
     justifyContent: 'center',
   },
   title: {
     color: '#FFF',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: '700',
     lineHeight: 22,
     textAlign: 'center',
+    marginBottom: hp('1%'),
   },
   subtitle: {
     color: '#FFF',
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: '400',
     lineHeight: 16,
     textAlign: 'center',
@@ -119,7 +124,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.primary,
     fontWeight: '700',
-    fontSize: 12,
+    fontSize: 14,
     lineHeight: 16,
   },
 });

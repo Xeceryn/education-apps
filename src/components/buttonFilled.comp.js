@@ -7,10 +7,20 @@ import {
 } from 'react-native-responsive-screen';
 import colors from '../utils/colors.utils';
 
-const ButtonFilled = ({buttonText, iconName, iconColor, iconSize}) => {
+const ButtonFilled = ({
+  onPress,
+  disabled,
+  buttonText,
+  iconName,
+  iconColor,
+  iconSize,
+}) => {
   return (
     <View style={styles.buttonFilledContainer}>
-      <Pressable style={styles.buttonFilled}>
+      <Pressable
+        style={styles.buttonFilled}
+        onPress={onPress}
+        disabled={disabled}>
         <Text style={styles.buttonFilledText}>{buttonText}</Text>
         <Icon
           style={styles.buttonFilledIcon}
@@ -39,7 +49,7 @@ const styles = StyleSheet.create({
   buttonFilledText: {
     color: colors.primary,
     fontWeight: '700',
-    fontSize: 12,
+    fontSize: 14,
     lineHeight: 16,
   },
   buttonFilledIcon: {
