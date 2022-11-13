@@ -26,7 +26,7 @@ const registForm = yup.object().shape({
 });
 
 const RegistrasiScreen = ({navigation}) => {
-  const {regist} = useContext(AuthContext);
+  const {sign} = useContext(AuthContext);
   const [rightIconName, setRightIconName] = useState('eye-off');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [buttonValue, setButtonValue] = useState('');
@@ -105,7 +105,7 @@ const RegistrasiScreen = ({navigation}) => {
               passwordConfirmation,
               buttonValue,
             };
-            regist(userRegist);
+            sign(phone);
           }}>
           {({
             handleChange,

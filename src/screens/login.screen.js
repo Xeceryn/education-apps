@@ -67,7 +67,7 @@ const LoginScreen = ({navigation}) => {
               phone: initial + phone,
               password,
             };
-            sign(userData);
+            sign(phone);
           }}>
           {({
             handleChange,

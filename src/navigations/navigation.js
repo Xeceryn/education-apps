@@ -17,6 +17,7 @@ import colors from '../utils/colors.utils';
 
 const Navigation = () => {
   const [isFirst, setIsFirst] = useState(true);
+  const [isLogin, setIsLogin] = useState(true);
   const [userData, setUserData] = useState(null);
   const [userRegist, setUserRegist] = useState(null);
 
@@ -28,6 +29,14 @@ const Navigation = () => {
       }
     };
     checkFirst();
+
+    async function checkUser() {
+      const login = await AsyncStorageLib.getItem('login');
+      if (login === 'false') {
+        setIsLogin(false);
+      }
+    }
+    checkUser();
   }, []);
 
   const authContext = useMemo(() => ({
@@ -36,8 +45,8 @@ const Navigation = () => {
       setIsFirst(false);
     },
     sign: async data => {
-      await AsyncStorageLib.setItem('userData', data);
-      setUserData(userData);
+      await AsyncStorageLib.setItem('isLogin', JSON.stringify(false));
+      setIsLogin(false);
     },
     regist: async data => {
       await AsyncStorageLib.setItem('userRegist', data);
@@ -97,15 +106,15 @@ const Navigation = () => {
           }}>
           {isFirst ? (
             <Stack.Screen name="Intro" component={IntroScreen} />
-          ) : userData == null ? (
+          ) : isLogin ? (
             <>
-              <Stack.Screen name="Tabs" component={HomeTabs} />
+              <Stack.Screen name="HomeTabs" component={HomeTabs} />
               <Stack.Screen name="Login" component={LoginScreen} />
               <Stack.Screen name="Registrasi" component={RegistrasiScreen} />
               <Stack.Screen name="OTP" component={OtpScreen} />
             </>
           ) : (
-            <></>
+            <Stack.Screen name="Home" component={HomeTabs} />
           )}
         </Stack.Navigator>
       </NavigationContainer>
