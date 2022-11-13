@@ -9,6 +9,7 @@ import IntroScreen from '../screens/intro.screen';
 import LoginScreen from '../screens/login.screen';
 import RegistrasiScreen from '../screens/registrasi.screen';
 import OtpScreen from '../screens/otp.screen';
+import HomeScreen from '../screens/home.screen';
 import AkunScreen from '../screens/akun.screen';
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
@@ -90,8 +91,9 @@ const Navigation = () => {
           tabBarActiveTintColor: colors.white,
           tabBarInactiveTintColor: colors.grey,
           tabBarStyle: {backgroundColor: colors.primary},
+          headerShown: false,
         })}>
-        <Bottom.Screen name="Home" component={Home} />
+        <Bottom.Screen name="Home" component={HomeScreen} />
         <Bottom.Screen name="Bag" component={Bag} />
         <Bottom.Screen name="Akun" component={AkunScreen} />
       </Bottom.Navigator>

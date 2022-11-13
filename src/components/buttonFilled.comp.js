@@ -11,6 +11,9 @@ const ButtonFilled = ({
   onPress,
   disabled,
   buttonText,
+  textColor,
+  buttonSize,
+  buttonColor,
   iconName,
   iconColor,
   iconSize,
@@ -18,10 +21,10 @@ const ButtonFilled = ({
   return (
     <View style={styles.buttonFilledContainer}>
       <Pressable
-        style={styles.buttonFilled}
+        style={styles.buttonFilled(buttonSize, buttonColor)}
         onPress={onPress}
         disabled={disabled}>
-        <Text style={styles.buttonFilledText}>{buttonText}</Text>
+        <Text style={styles.buttonFilledText(textColor)}>{buttonText}</Text>
         <Icon
           style={styles.buttonFilledIcon}
           name={iconName}
@@ -37,21 +40,21 @@ const styles = StyleSheet.create({
   buttonFilledContainer: {
     marginTop: hp('1%'),
   },
-  buttonFilled: {
+  buttonFilled: (buttonSize, buttonColor) => ({
     backgroundColor: colors.secondary,
-    width: wp('90%'),
+    width: wp(buttonSize),
     height: hp('6%'),
     borderRadius: wp('1%'),
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  buttonFilledText: {
-    color: colors.primary,
+  }),
+  buttonFilledText: textColor => ({
+    color: textColor,
     fontWeight: '700',
     fontSize: 14,
     lineHeight: 16,
-  },
+  }),
   buttonFilledIcon: {
     marginLeft: wp('2%'),
   },
