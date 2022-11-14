@@ -9,6 +9,7 @@ import LoginArt from '../assets/images/loginArt.png';
 import RegistrasiBg from '../assets/images/registrasibg.png';
 import RegistrasiArt from '../assets/images/registrasiArt.png';
 import OtpArt from '../assets/images/otpArt.png';
+import ImageDefault from '../assets/images/default.png';
 
 const images = {
   Intro1Bg,
@@ -22,6 +23,7 @@ const images = {
   RegistrasiBg,
   RegistrasiArt,
   OtpArt,
+  ImageDefault,
 };
 
 export default function getImageByName(key) {
