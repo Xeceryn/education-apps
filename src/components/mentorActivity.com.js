@@ -7,7 +7,7 @@ import {
 import colors from '../utils/colors.utils';
 import ButtonFilled from './buttonFilled.comp';
 
-const MentorActivity = ({title, subtitle}) => {
+const MentorActivity = ({title, subtitle, onPress}) => {
   return (
     <View style={styles.mentorActivityContainer}>
       <View style={styles.itemContainer}>
@@ -21,6 +21,7 @@ const MentorActivity = ({title, subtitle}) => {
           buttonColor={colors.secondary}
           buttonSize={'80%'}
           textColor={colors.white}
+          onPress={onPress}
         />
       </View>
     </View>

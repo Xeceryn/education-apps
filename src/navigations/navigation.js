@@ -11,6 +11,7 @@ import RegistrasiScreen from '../screens/registrasi.screen';
 import OtpScreen from '../screens/otp.screen';
 import HomeScreen from '../screens/home.screen';
 import AkunScreen from '../screens/akun.screen';
+import AktifasiAkunScreen from '../screens/aktifasiAkun.screen';
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
 import {AuthContext} from '../utils/context.utils';
@@ -54,14 +55,6 @@ const Navigation = () => {
       setUserRegist(userRegist);
     },
   }));
-
-  const Home = () => {
-    return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>Home!</Text>
-      </View>
-    );
-  };
 
   const Bag = () => {
     return (
@@ -116,7 +109,10 @@ const Navigation = () => {
               <Stack.Screen name="OTP" component={OtpScreen} />
             </>
           ) : (
-            <Stack.Screen name="Home" component={HomeTabs} />
+            <>
+              <Stack.Screen name="Home" component={HomeTabs} />
+              <Stack.Screen name="Aktifasi" component={AktifasiAkunScreen} />
+            </>
           )}
         </Stack.Navigator>
       </NavigationContainer>
