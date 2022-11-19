@@ -12,7 +12,7 @@ import {
 } from 'react-native-responsive-screen';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const Akun = () => {
+const Akun = ({navigation}) => {
   return (
     <View style={styles.akunContainer}>
       <View style={styles.topContainer}>
@@ -25,6 +25,7 @@ const Akun = () => {
           subtitle={
             'Silahkan melakukan verifikasi untuk menggunakan akun sebagai mentor'
           }
+          onPress={() => navigation.navigate('Aktifasi')}
         />
       </View>
       <View style={styles.bottomContainer}>
