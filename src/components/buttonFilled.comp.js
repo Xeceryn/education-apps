@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     marginTop: hp('1%'),
   },
   buttonFilled: (buttonSize, buttonColor) => ({
-    backgroundColor: colors.secondary,
+    backgroundColor: buttonColor,
     width: wp(buttonSize),
     height: hp('6%'),
     borderRadius: wp('1%'),

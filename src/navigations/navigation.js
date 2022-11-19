@@ -10,8 +10,7 @@ import LoginScreen from '../screens/login.screen';
 import RegistrasiScreen from '../screens/registrasi.screen';
 import OtpScreen from '../screens/otp.screen';
 import HomeScreen from '../screens/home.screen';
-import AkunScreen from '../screens/akun.screen';
-import AktifasiAkunScreen from '../screens/aktifasiAkun.screen';
+import AkunStack from './akun.navigation';
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
 import {AuthContext} from '../utils/context.utils';
@@ -75,7 +74,7 @@ const Navigation = () => {
               iconName = focused ? 'home' : 'home-outline';
             } else if (route.name === 'Bag') {
               iconName = focused ? 'basket' : 'basket-outline';
-            } else if (route.name === 'Akun') {
+            } else if (route.name === 'AkunStack') {
               iconName = focused ? 'person' : 'person-outline';
             }
 
@@ -88,7 +87,7 @@ const Navigation = () => {
         })}>
         <Bottom.Screen name="Home" component={HomeScreen} />
         <Bottom.Screen name="Bag" component={Bag} />
-        <Bottom.Screen name="Akun" component={AkunScreen} />
+        <Bottom.Screen name="AkunStack" component={AkunStack} />
       </Bottom.Navigator>
     );
   };
@@ -111,7 +110,6 @@ const Navigation = () => {
           ) : (
             <>
               <Stack.Screen name="Home" component={HomeTabs} />
-              <Stack.Screen name="Aktifasi" component={AktifasiAkunScreen} />
             </>
           )}
         </Stack.Navigator>
