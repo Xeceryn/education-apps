@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StatusBar, StyleSheet} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import colors from '../utils/colors.utils';
 import RoundedImage from '../components/roundedImage.comp';
 import BadgeStatus from '../components/badgeStatus.comp';
@@ -15,10 +16,26 @@ import Icon from 'react-native-vector-icons/Ionicons';
 const Akun = ({navigation}) => {
   return (
     <View style={styles.akunContainer}>
-      <View style={styles.topContainer}>
-        <RoundedImage imageName={'ImageDefault'} size={'25'} />
-        <Text>Nadia Sari.Sp.d</Text>
-        <BadgeStatus type={'Mentor'} />
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent
+      />
+      <LinearGradient
+        colors={['#1C8CF4', '#73B3FF']}
+        start={{x: 1, y: 0.5}}
+        end={{x: 0.5, y: 1}}
+        style={styles.topContainer}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.textTitle}>Akun Anda</Text>
+        </View>
+        <View style={styles.imageContainer}>
+          <RoundedImage imageName={'ImageDefault'} size={'25'} />
+        </View>
+        <Text style={styles.textTypeUser}>Nadia Sari.Sp.d</Text>
+        <View style={styles.badgeStatus}>
+          <BadgeStatus type={'Mentor'} />
+        </View>
         <Achievement />
         <MentorActivity
           title={'Akun Mentor Belum Aktif'}
@@ -27,7 +44,7 @@ const Akun = ({navigation}) => {
           }
           onPress={() => navigation.navigate('Aktifasi')}
         />
-      </View>
+      </LinearGradient>
       <View style={styles.bottomContainer}>
         <Text style={styles.textSetting}>Pengaturan</Text>
         <View style={styles.itemSetting}>
@@ -72,14 +89,35 @@ const styles = StyleSheet.create({
   topContainer: {
     alignItems: 'center',
     paddingTop: hp('5%'),
-    backgroundColor: colors.primary,
     borderBottomLeftRadius: wp('1%'),
     borderBottomRightRadius: wp('1%'),
     paddingBottom: hp('3%'),
+    paddingTop: wp('12%'),
+  },
+  titleContainer: {
+    top: wp('-1%'),
+    left: wp('-34%'),
+  },
+  textTitle: {
+    color: colors.white,
+    fontWeight: '700',
+    fontSize: 16,
+  },
+  imageContainer: {
+    top: wp('3%'),
+  },
+  textTypeUser: {
+    color: colors.white,
+    fontWeight: '700',
+    fontSize: 18,
+    marginTop: wp('4%'),
+  },
+  badgeStatus: {
+    padding: wp('2%'),
   },
   bottomContainer: {
     marginHorizontal: wp('5%'),
-    marginTop: hp('4%'),
+    marginTop: hp('2%'),
   },
   textSetting: {
     fontWeight: '700',
@@ -108,7 +146,7 @@ const styles = StyleSheet.create({
     marginTop: wp('2%'),
   },
   buttonContainer: {
-    bottom: wp('-10%'),
+    top: wp('14%'),
   },
 });
 

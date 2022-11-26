@@ -6,13 +6,20 @@ import {
 } from 'react-native-responsive-screen';
 
 import ButtonFilled from '../components/buttonFilled.comp';
+import BackButton from '../components/backButton.comp';
 
 import colors from '../utils/colors.utils';
 import getImageByName from '../utils/images.utils';
 
-const StatusAktifasi = () => {
+const StatusAktifasi = ({navigation}) => {
+  const backButton = () => {
+    navigation.goBack();
+  };
   return (
     <View style={styles.statusContainer}>
+      <View style={styles.backButtonContainer}>
+        <BackButton iconColor={colors.white} onPress={backButton} />
+      </View>
       <Image source={getImageByName('OtpArt')} />
       <Text style={styles.title}>Berhasil!</Text>
       <Text style={styles.subtitle}>
@@ -21,6 +28,7 @@ const StatusAktifasi = () => {
       <View style={styles.buttonContainer}>
         <ButtonFilled
           buttonColor={colors.white}
+          textColor={colors.neutral}
           buttonSize={'90'}
           iconName={'arrow-forward'}
           iconColor={colors.neutral}
@@ -38,6 +46,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.primary,
+    paddingTop: wp('4%'),
+  },
+  backButtonContainer: {
+    top: wp('-55%'),
+    right: wp('45%'),
   },
   title: {
     color: colors.white,
@@ -52,7 +65,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   buttonContainer: {
-    top: hp('20%'),
+    top: hp('25%'),
   },
 });
 

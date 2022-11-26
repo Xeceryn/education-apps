@@ -24,6 +24,7 @@ import colors from '../utils/colors.utils';
 import {AuthContext} from '../utils/context.utils';
 
 const loginForm = yup.object().shape({
+  username: yup.string().required('Username harus diisi'),
   phone: yup.number().required('No Handphone harus diisi'),
   password: yup.string().required('Password harus diisi'),
 });
@@ -54,6 +55,7 @@ const LoginScreen = ({navigation}) => {
         </View>
         <Formik
           initialValues={{
+            username: '',
             phone: '',
             password: '',
           }}
@@ -61,13 +63,17 @@ const LoginScreen = ({navigation}) => {
           validateOnBlur={true}
           validationSchema={loginForm}
           enableReinitialize
-          onSubmit={({phone, password}) => {
+          onSubmit={({username, phone, password}) => {
             const initial = '+62';
             const userData = {
+              username,
               phone: initial + phone,
               password,
             };
-            sign(phone);
+            // send data to API, send otp request to server with feedback from login.
+            // router send to page OTP.
+            // sign(phone);
+            navigation.navigate('OTP');
           }}>
           {({
             handleChange,
@@ -79,6 +85,20 @@ const LoginScreen = ({navigation}) => {
           }) => (
             <>
               <View style={styles.inputContainer}>
+                <Input
+                  label={'Username'}
+                  placeholder={'Username'}
+                  placeholderTextColor={
+                    errors.username ? colors.alert : colors.white
+                  }
+                  leftIconName={'person'}
+                  rightIconName={'arrow-forward'}
+                  iconColor={colors.white}
+                  iconSize={22}
+                  onChangeText={handleChange('username')}
+                  onBlur={handleBlur('username')}
+                  value={values.username}
+                />
                 <InputPhone
                   label={'No Handphone'}
                   placeholder={'0'}
@@ -120,10 +140,16 @@ const LoginScreen = ({navigation}) => {
                   iconSize={20}
                   onPress={handleSubmit}
                   disabled={!isValid}
+                  buttonSize={'90'}
+                  buttonColor={colors.secondary}
+                  textColor={colors.primary}
                 />
                 <ButtonOutline
                   buttonText={'Daftar Akun'}
                   onPress={() => navigation.navigate('Registrasi')}
+                  buttonSize={'90'}
+                  borderColor={colors.white}
+                  textColor={colors.white}
                 />
               </View>
             </>
@@ -140,7 +166,7 @@ const styles = StyleSheet.create({
     top: hp('10%'),
   },
   formContainer: {
-    top: hp('17%'),
+    top: hp('13%'),
     alignItems: 'center',
     justifyContent: 'center',
   },
