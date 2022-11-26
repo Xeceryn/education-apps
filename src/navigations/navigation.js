@@ -10,7 +10,9 @@ import LoginScreen from '../screens/login.screen';
 import RegistrasiScreen from '../screens/registrasi.screen';
 import OtpScreen from '../screens/otp.screen';
 import HomeScreen from '../screens/home.screen';
-import AkunStack from './akun.navigation';
+import AkunScreen from '../screens/akun.screen';
+import AktifasiAkunScreen from '../screens/aktifasiAkun.screen';
+import StatusAktifasiScreen from '../screens/statusAktifasi.screen';
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
 import {AuthContext} from '../utils/context.utils';
@@ -32,7 +34,7 @@ const Navigation = () => {
     checkFirst();
 
     async function checkUser() {
-      const login = await AsyncStorageLib.getItem('login');
+      const login = await AsyncStorageLib.getItem('isLogin');
       if (login === 'false') {
         setIsLogin(false);
       }
@@ -74,7 +76,7 @@ const Navigation = () => {
               iconName = focused ? 'home' : 'home-outline';
             } else if (route.name === 'Bag') {
               iconName = focused ? 'basket' : 'basket-outline';
-            } else if (route.name === 'AkunStack') {
+            } else if (route.name === 'Akun') {
               iconName = focused ? 'person' : 'person-outline';
             }
 
@@ -87,7 +89,7 @@ const Navigation = () => {
         })}>
         <Bottom.Screen name="Home" component={HomeScreen} />
         <Bottom.Screen name="Bag" component={Bag} />
-        <Bottom.Screen name="AkunStack" component={AkunStack} />
+        <Bottom.Screen name="Akun" component={AkunScreen} />
       </Bottom.Navigator>
     );
   };
@@ -101,16 +103,17 @@ const Navigation = () => {
           {isFirst ? (
             <Stack.Screen name="Intro" component={IntroScreen} />
           ) : isLogin ? (
-            <>
-              <Stack.Screen name="HomeTabs" component={HomeTabs} />
+            <Stack.Group>
               <Stack.Screen name="Login" component={LoginScreen} />
               <Stack.Screen name="Registrasi" component={RegistrasiScreen} />
               <Stack.Screen name="OTP" component={OtpScreen} />
-            </>
+            </Stack.Group>
           ) : (
-            <>
-              <Stack.Screen name="Home" component={HomeTabs} />
-            </>
+            <Stack.Group>
+              <Stack.Screen name="HomeTabs" component={HomeTabs} />
+              <Stack.Screen name="Aktifasi" component={AktifasiAkunScreen} />
+              <Stack.Screen name="Status" component={StatusAktifasiScreen} />
+            </Stack.Group>
           )}
         </Stack.Navigator>
       </NavigationContainer>

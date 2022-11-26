@@ -15,9 +15,9 @@ import Input from '../components/input.comp';
 import ButtonFilled from '../components/buttonFilled.comp';
 import getImageByName from '../utils/images.utils';
 import colors from '../utils/colors.utils';
-import {AuthContext} from '../utils/context.utils';
 
 const registForm = yup.object().shape({
+  username: yup.string().required('Username harus diisi'),
   phone: yup.number().required('No Handphone harus diisi'),
   password: yup.string().required('Password harus diisi'),
   passwordConfirmation: yup
@@ -26,7 +26,6 @@ const registForm = yup.object().shape({
 });
 
 const RegistrasiScreen = ({navigation}) => {
-  const {sign} = useContext(AuthContext);
   const [rightIconName, setRightIconName] = useState('eye-off');
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [buttonValue, setButtonValue] = useState('');
@@ -34,6 +33,7 @@ const RegistrasiScreen = ({navigation}) => {
   const [mentorSelect, isMentorSelect] = useState(false);
 
   const backButton = () => {
+    console.log('back');
     navigation.goBack();
   };
   const buttonSiswa = () => {
@@ -89,6 +89,7 @@ const RegistrasiScreen = ({navigation}) => {
         </View>
         <Formik
           initialValues={{
+            username: '',
             phone: '',
             password: '',
             passwordConfirmation: '',
@@ -97,15 +98,19 @@ const RegistrasiScreen = ({navigation}) => {
           validateOnBlur={true}
           validationSchema={registForm}
           enableReinitialize={true}
-          onSubmit={({phone, password, passwordConfirmation}) => {
+          onSubmit={({username, phone, password, passwordConfirmation}) => {
             const initial = '+62';
             const userRegist = {
+              username,
               phone: initial + phone,
               password,
               passwordConfirmation,
               buttonValue,
             };
-            sign(phone);
+            // sign(phone);
+            // send request regist to server.
+            // if success goback to login.
+            // else toast
           }}>
           {({
             handleChange,
@@ -116,7 +121,22 @@ const RegistrasiScreen = ({navigation}) => {
             errors,
           }) => (
             <>
+              {console.log(isValid)}
               <View style={styles.textInputContainer}>
+                <Input
+                  label={'Username'}
+                  placeholder={'Username'}
+                  placeholderTextColor={
+                    errors.username ? colors.alert : colors.white
+                  }
+                  leftIconName={'person'}
+                  rightIconName={'arrow-forward'}
+                  iconColor={colors.white}
+                  iconSize={22}
+                  onChangeText={handleChange('username')}
+                  onBlur={handleBlur('username')}
+                  value={values.username}
+                />
                 <InputPhone
                   label={'No Handphone'}
                   placeholder={'0'}
@@ -168,6 +188,9 @@ const RegistrasiScreen = ({navigation}) => {
                   iconSize={22}
                   onPress={handleSubmit}
                   disabled={!isValid}
+                  buttonSize={'90'}
+                  buttonColor={colors.secondary}
+                  textColor={colors.primary}
                 />
               </View>
             </>
@@ -180,22 +203,22 @@ const RegistrasiScreen = ({navigation}) => {
 
 const styles = StyleSheet.create({
   backButtonContainer: {
-    top: hp('-24%'),
-    left: wp('-44%'),
+    top: hp('-22%'),
+    left: wp('-46%'),
   },
   ilustrasiContainer: {
     position: 'absolute',
-    top: hp('10%'),
+    top: hp('4%'),
   },
   formContainer: {
-    top: hp('36%'),
+    top: hp('32%'),
     alignItems: 'center',
   },
   headerContainer: {
     position: 'absolute',
     width: wp('40%'),
     left: wp('0%'),
-    top: hp('-30%'),
+    top: hp('-28%'),
   },
   buttonTypeContainer: {
     top: hp('-16%'),

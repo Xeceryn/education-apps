@@ -10,7 +10,7 @@ import colors from '../utils/colors.utils';
 const BadgeStatus = ({type}) => {
   return (
     <View style={styles.badgeContainer}>
-      <Icon name="checkmark-circle-outline" color={colors.white} size={25} />
+      <Icon name="checkmark-circle-outline" color={colors.white} size={18} />
       <Text style={styles.typeText}>{type}</Text>
     </View>
   );
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    width: wp('24%'),
+    width: wp('19%'),
     height: wp('8%'),
     borderRadius: wp('5%'),
   },

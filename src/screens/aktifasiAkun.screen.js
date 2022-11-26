@@ -10,12 +10,24 @@ import RoundedImage from '../components/roundedImage.comp';
 import ButtonType from '../components/buttonType.comp';
 import InputAktifasi from '../components/inputAktifasi.comp';
 import ButtonFilled from '../components/buttonFilled.comp';
+import BackButton from '../components/backButton.comp';
 
 import colors from '../utils/colors.utils';
 
 const AktifasiAkun = ({navigation}) => {
+  const backButton = () => {
+    navigation.goBack();
+  };
+
   return (
     <View style={styles.aktifasiContainer}>
+      <View style={styles.backbutton}>
+        <BackButton
+          iconColor={colors.neutral}
+          buttonLabel={'Aktifasi Akun'}
+          onPress={backButton}
+        />
+      </View>
       <View style={styles.imageContainer}>
         <RoundedImage imageName={'ImageDefault'} size={'25'} />
       </View>
@@ -81,16 +93,18 @@ const AktifasiAkun = ({navigation}) => {
           </Pressable>
         </View>
       </ScrollView>
-      <ButtonFilled
-        buttonSize={'90'}
-        buttonText={'Aktifkan Akun'}
-        buttonColor={colors.primary}
-        textColor={colors.white}
-        iconName={'arrow-forward'}
-        iconColor={colors.white}
-        iconSize={22}
-        onPress={() => navigation.navigate('Status')}
-      />
+      <View style={styles.buttonContainer}>
+        <ButtonFilled
+          buttonSize={'90'}
+          buttonText={'Aktifkan Akun'}
+          buttonColor={colors.primary}
+          textColor={colors.white}
+          iconName={'arrow-forward'}
+          iconColor={colors.white}
+          iconSize={22}
+          onPress={() => navigation.navigate('Status')}
+        />
+      </View>
     </View>
   );
 };
@@ -99,15 +113,23 @@ const styles = StyleSheet.create({
   aktifasiContainer: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: colors.white,
+    paddingTop: wp('4%'),
+  },
+  backbutton: {
+    top: wp('5%'),
+    right: wp('47%'),
   },
   imageContainer: {
     alignItems: 'center',
-    paddingTop: hp('5%'),
+    paddingTop: hp('8%'),
+    top: wp('3%'),
   },
   formContainer: {
     marginHorizontal: wp('4%'),
     paddingVertical: wp('15%'),
     paddingTop: wp('4%'),
+    marginBottom: wp('3%'),
   },
   textDetail: {
     color: colors.neutral,
@@ -122,7 +144,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cvContainer: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primary2,
     height: hp('25%'),
     width: wp('90%'),
     alignItems: 'center',
@@ -157,6 +179,9 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontWeight: '700',
     fontSize: 14,
+  },
+  buttonContainer: {
+    bottom: wp('3%'),
   },
 });
 
