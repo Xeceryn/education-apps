@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Text, StatusBar, StyleSheet} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import colors from '../utils/colors.utils';
@@ -14,6 +14,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const Akun = ({navigation}) => {
+  const [akunStatus, setAkunStatus] = useState('Active');
   return (
     <View style={styles.akunContainer}>
       <StatusBar
@@ -38,11 +39,22 @@ const Akun = ({navigation}) => {
         </View>
         <Achievement />
         <MentorActivity
-          title={'Akun Mentor Belum Aktif'}
-          subtitle={
-            'Silahkan melakukan verifikasi untuk menggunakan akun sebagai mentor'
+          title={
+            akunStatus === 'Active' ? 'Kelas Anda' : 'Akun Mentor Belum Aktif'
           }
-          onPress={() => navigation.navigate('Aktifasi')}
+          subtitle={
+            akunStatus === 'Active'
+              ? 'Periksa kelas anda dan perbarui untuk mulai mengajar siswa'
+              : akunStatus === 'Inactive'
+              ? 'Silahkan melakukan verifikasi untuk menggunakan akun sebagai mentor'
+              : 'Akun anda masih dalam tahap verifikasi oleh tim kami, mohon untuk mengunggu'
+          }
+          onPress={() =>
+            akunStatus === 'Active'
+              ? navigation.navigate('Profil')
+              : navigation.navigate('Aktifasi')
+          }
+          status={akunStatus}
         />
       </LinearGradient>
       <View style={styles.bottomContainer}>
@@ -69,13 +81,13 @@ const Akun = ({navigation}) => {
             <Text style={styles.textChild}>Notifikasi</Text>
           </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <ButonOutline
-            buttonText={'Keluar'}
-            borderColor={'#939393'}
-            textColor={'#939393'}
-          />
-        </View>
+      </View>
+      <View style={styles.buttonContainer}>
+        <ButonOutline
+          buttonText={'Keluar'}
+          borderColor={'#939393'}
+          textColor={'#939393'}
+        />
       </View>
     </View>
   );
@@ -146,7 +158,9 @@ const styles = StyleSheet.create({
     marginTop: wp('2%'),
   },
   buttonContainer: {
-    top: wp('14%'),
+    bottom: wp('8%'),
+    marginHorizontal: wp('5%'),
+    position: 'absolute',
   },
 });
 

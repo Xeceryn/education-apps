@@ -13,6 +13,7 @@ import HomeScreen from '../screens/home.screen';
 import AkunScreen from '../screens/akun.screen';
 import AktifasiAkunScreen from '../screens/aktifasiAkun.screen';
 import StatusAktifasiScreen from '../screens/statusAktifasi.screen';
+import ProfilScreen from '../screens/profil.screen';
 const Stack = createNativeStackNavigator();
 const Bottom = createBottomTabNavigator();
 import {AuthContext} from '../utils/context.utils';
@@ -113,6 +114,7 @@ const Navigation = () => {
               <Stack.Screen name="HomeTabs" component={HomeTabs} />
               <Stack.Screen name="Aktifasi" component={AktifasiAkunScreen} />
               <Stack.Screen name="Status" component={StatusAktifasiScreen} />
+              <Stack.Screen name="Profil" component={ProfilScreen} />
             </Stack.Group>
           )}
         </Stack.Navigator>
