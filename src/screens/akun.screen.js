@@ -49,7 +49,11 @@ const Akun = ({navigation}) => {
               ? 'Silahkan melakukan verifikasi untuk menggunakan akun sebagai mentor'
               : 'Akun anda masih dalam tahap verifikasi oleh tim kami, mohon untuk mengunggu'
           }
-          onPress={() => navigation.navigate('Aktifasi')}
+          onPress={() =>
+            akunStatus === 'Active'
+              ? navigation.navigate('Profil')
+              : navigation.navigate('Aktifasi')
+          }
           status={akunStatus}
         />
       </LinearGradient>
